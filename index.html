@@ -8,7 +8,7 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>クイズ</title>
+  <title>デジタルスタンプ大作戦！丸塚古墳</title>
 
   <style>
     * {
@@ -342,10 +342,16 @@
 
     <div class="correct-image-wrap">
 
+      <img
+        id="answerImage"
+        class="correct-image"
+        alt="正解画像"
+        style="-webkit-touch-callout: default; user-select: auto; -webkit-user-select: auto; -webkit-user-drag: auto;"
+      >
+
       <canvas
         id="correctCanvas"
-        class="correct-image"
-        aria-label="正解画像"
+        style="display: none;"
       ></canvas>
 
     </div>
@@ -378,6 +384,9 @@
 
     const correctCanvas =
       document.getElementById("correctCanvas");
+
+    const answerImage =
+      document.getElementById("answerImage");
 
 
     // ローカルで直接HTMLを開いた場合でも動作する初期正解
@@ -662,6 +671,9 @@
           );
 
           ctx.shadowBlur = 0;
+
+          answerImage.src =
+            canvas.toDataURL("image/jpeg", 0.95);
 
           resolve();
 
